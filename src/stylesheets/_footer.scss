@@ -1,0 +1,34 @@
+.app-footer {
+  background: $footerBgColor;
+  bottom: 0;
+  box-sizing: border-box;
+  color: $footerColor;
+  font-size: 13px;
+  height: $footerHeight;
+  left: 0;
+  padding: 6px 5px 0 10px;
+  position: absolute;
+  width: 100%;
+
+  .voting-power {
+    cursor: default;
+    float: left;
+
+    .fa {
+      color: $footerColor;
+    }
+
+    &.power-changed{
+      background: $highlightColor;
+    }
+  }
+
+  .footer-links {
+    float: right;
+    a {
+      color: $footerColor;
+      display: inline-block;
+      margin-right: 10px;
+    }
+  }
+}

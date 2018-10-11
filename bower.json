@@ -1,0 +1,12 @@
+{
+  "name": "dsocial-desktop",
+  "description": "dSocial Desktop",
+  "license": "MIT",
+  "homepage": "http://dsocial.io",
+  "private": true,
+  "dependencies": {
+    "components-font-awesome": "^4.7.0",
+    "bootstrap": "3",
+    "jquery": "^3.3.1"
+  }
+}

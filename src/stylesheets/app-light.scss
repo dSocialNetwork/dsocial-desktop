@@ -1,0 +1,65 @@
+@import "~angularjs-slider/dist/rzslider.scss";
+
+body.light-theme {
+
+  $themePrimaryTone: #2c5393;
+
+  $navbarBgColorDefault: #2c5393;
+  $navbarBgColorHighlight: #4879c9;
+  $navbarColorDefault: #eeeeee;
+  $navbarColorHighlight: #ffffff;
+  $navbarColorizeDropDown: true;
+
+  $footerBgColor: #f2f2f2;
+  $footerColor: #838383;
+  $footerHeight: 30px;
+
+  $appBg: #FCFCFC;
+  $boxBg: #f8f8f8;
+
+  $profilePicBg: #eeeeee;
+
+  $listBgColor: #ffffff;
+  $listBorderColor: #e8e8e8;
+
+  $textColor: #333;
+  $textColorLight: #788187;
+  $textColorLighter: #8c979e;
+  $textColorLightest: #fff;
+
+  $linkHoverColor: #4879c9;
+
+  $hoverColor: #d2e2ee;
+
+  $seperatorColor: #eeeeee;
+
+  $loadingColor: #5892f4;
+  $loadingSuccessColor: #009c00;
+
+  $altRowColor: #fbfbfb;
+
+  $highlightColor: #FFFBCC;
+
+  $contentEditorControlsBg: #f8f8f8;
+
+  $editorTagErrBg: #fff;
+
+  $loadingItemColor: #f3f3f3;
+
+  $loginWindowOrBg: #fcfcfa;
+
+  $galleryImgBg: #f8f8f8;
+
+  $selectedCommentBg: #fff6b4;
+
+  $voteBtnColor: #357CE6;
+
+  @import "overwrites";
+  @import "navbar";
+  @import "footer";
+  @import "common";
+  @import "layout";
+  @import "components";
+
+  @import "light-extra";
+}

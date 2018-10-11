@@ -1,0 +1,297 @@
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss";
+
+.app-navbar {
+  background-color: $navbarBgColorDefault;
+
+  border: 0;
+
+  // Coloring created with https://work.smarchal.com/twbscolor/
+  border-radius: 0;
+
+  margin-bottom: 0;
+  .container-fluid {
+    padding-right: 2px;
+  }
+  .navbar-brand {
+    color: $navbarColorDefault;
+    &:hover, &:focus {
+      color: $navbarColorHighlight;
+    }
+  }
+
+  .navbar-text {
+    color: $navbarColorDefault;
+  }
+  .navbar-nav {
+    > li {
+      > a {
+        color: $navbarColorDefault;
+        &:hover, &:focus {
+          color: $navbarColorHighlight;
+        }
+      }
+      @if $navbarColorizeDropDown {
+        > .dropdown-menu {
+          background-color: $navbarBgColorDefault;
+          > li {
+            > a {
+              color: $navbarColorDefault;
+              &:hover, &:focus {
+                color: $navbarColorHighlight;
+                background-color: $navbarBgColorHighlight;
+              }
+            }
+            &.divider {
+              background-color: $navbarBgColorHighlight;
+            }
+          }
+        }
+      }
+    }
+    @if $navbarColorizeDropDown {
+      .open .dropdown-menu > .active {
+        > a, > a:hover, > a:focus {
+          color: $navbarColorHighlight;
+          background-color: $navbarBgColorHighlight;
+        }
+      }
+    }
+    > .active {
+      > a, > a:hover, > a:focus {
+        background-color: $navbarBgColorHighlight;
+        color: $navbarColorHighlight;
+      }
+    }
+    > .open {
+      > a, > a:hover, > a:focus {
+        background-color: $navbarBgColorHighlight;
+        color: $navbarColorHighlight;
+      }
+    }
+  }
+  .navbar-toggle {
+    border-color: $navbarBgColorHighlight;
+    &:hover, &:focus {
+      background-color: $navbarBgColorHighlight;
+    }
+    .icon-bar {
+      background-color: $navbarColorDefault;
+    }
+  }
+  // End of navbar coloring.
+
+  .navbar-collapse,
+  .navbar-form {
+    border-color: $navbarColorDefault;
+  }
+  .navbar-link {
+    color: $navbarColorDefault;
+    &:hover {
+      color: $navbarColorHighlight;
+    }
+  }
+  .navbar-back {
+    align-items: center;
+    display: flex;
+    float: left;
+    height: $navbar-height;
+    justify-content: center;
+
+    margin: 0 14px 0 6px;
+
+    a {
+      align-items: center;
+      border-radius: 50%;
+      color: $navbarColorDefault;
+      display: flex;
+      height: 24px;
+      justify-content: center;
+      width: 24px;
+
+      &:hover, &:focus {
+        background: $linkHoverColor;
+      }
+    }
+
+    &.hide-it {
+      visibility: hidden;
+    }
+  }
+
+  .navbar-brand {
+    padding-top: 8px;
+    img {
+      height: 36px;
+      width: 36px;
+    }
+  }
+
+  .navbar-right {
+    .settings, .login, .editor, .activities, .night-mode {
+      align-items: center;
+      display: flex;
+
+      a {
+        padding: 16px 10px 12px 10px;
+        .fa {
+          font-size: 19px;
+        }
+      }
+    }
+    .night-mode {
+      a {
+        opacity: 0.7;
+      }
+    }
+
+    .editor {
+
+      a {
+        .fa {
+
+        }
+      }
+    }
+
+    .activities{
+      a {
+        padding-bottom: 14px;
+      }
+    }
+
+    .activities {
+      position: relative;
+
+      a {
+
+        .fa {
+          font-size: 18px;
+        }
+      }
+
+      .has-activity {
+        background: #EC3323;
+        border-radius: 4px;
+        color: #fff;
+        font-size: 11px;
+        line-height: 11px;
+        padding: 2px 4px;
+        position: absolute;
+        right: 3px;
+        text-align: center;
+        top: 10px;
+        z-index: 2;
+      }
+    }
+
+    .user-dropdown {
+      .dropdown-toggle {
+        padding: 9px 10px 0 10px;
+
+        .profile-pic {
+          background: $profilePicBg;
+          background-position: 50% 50%;
+          background-repeat: no-repeat;
+          background-size: cover;
+          border-radius: 50%;
+          display: inline-block;
+          height: 34px;
+          width: 34px;
+        }
+      }
+
+      ul.dropdown-menu {
+
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        min-width: 138px;
+        padding-bottom: 0;
+        padding-top: 0;
+        width: 160px;
+
+        li {
+
+          &.username {
+            color: $textColorLightest;
+            font-weight: bold;
+            padding: 10px 17px;
+          }
+
+          a {
+            padding-bottom: 8px;
+            padding-top: 8px;
+            transition: all 0.3s ease;
+          }
+        }
+      }
+    }
+  }
+
+  .filter-dropdown {
+    width: 140px;
+
+    .dropdown-toggle {
+      font-weight: bold;
+      .caret {
+        float: right;
+        margin-top: 10px;
+      }
+    }
+
+    ul.dropdown-menu {
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      min-width: 138px;
+      padding-bottom: 0;
+      padding-top: 0;
+      width: 138px;
+
+      li {
+        a {
+          padding-bottom: 10px;
+          padding-top: 10px;
+          transition: all 0.3s ease;
+        }
+      }
+    }
+  }
+
+  .navbar-form {
+    .input-group-addon {
+      border-color: transparent;
+      box-shadow: none;
+      color: lighten($textColorLighter, 10);
+      padding-right: 8px;
+    }
+
+    .txt-search {
+      border-color: transparent;
+      box-shadow: none;
+      color: $textColorLighter;
+      padding-left: 8px;
+
+      width: 270px;
+
+      &::placeholder {
+        color: $textColorLighter !important;
+        opacity: 0.5;
+      }
+
+      @media (min-width: 1200px) {
+        width: 370px;
+      }
+    }
+
+    .input-group-btn {
+      button {
+        border-color: transparent;
+        box-shadow: none;
+        color: $textColorLight;
+      }
+    }
+  }
+
+  user-select: none;
+}

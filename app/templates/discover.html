@@ -1,0 +1,24 @@
+<nav-bar selected-section="'discover'"></nav-bar>
+<div class="app-container">
+  <div class="app-content discover-page">
+    <div class="indicator discover-indicator" ng-show="loadingAccounts">
+      <i class="fa fa-spin fa-spinner fa-circle-o-notch"></i>
+    </div>
+    <div class="author-list" ng-if="!loadingAccounts">
+      <header>
+        <button class="btn btn-default btn-reload" ng-click="refresh()" uib-tooltip="{{ 'REFRESH' | __ }}"><i
+          class="fa fa-refresh"></i></button>
+      </header>
+      <ul>
+        <li ng-repeat="item in accountList">
+          <div class="author-card">
+            <div ng-click="clicked(item)" class="author-pic" author-bg-img-style author="{{ item.name }}"></div>
+            <author-name author-data="item"></author-name>
+            <span class="author-full-name">&nbsp;{{ item.full_name }}&nbsp;</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

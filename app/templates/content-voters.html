@@ -1,0 +1,34 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="{{ 'CANCEL' | translate }}" ng-click="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h4 class="modal-title">{{ 'VOTERS_INFO' | translate }} <span ng-show="dataLen">({{ dataLen }})</span></h4>
+</div>
+<div class="modal-body">
+  <div class="indicator">
+    <i class="fa fa-spin fa-spinner fa-circle-o-notch loading-icon" ng-show="loading"></i>
+  </div>
+  <div class="empty-list" ng-if="data.length === 0 && !loading">
+    {{ 'EMPTY_LIST' | __ }}
+  </div>
+  <div class="data-list" ng-class="{'fetching': loading}" ng-hide="loading || data.length===0">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th><a class="sort-header" ng-click="sortData('reputation')" ng-class="{'selected-sort': sort === 'reputation'}">{{ 'VOTERS_INFO_VOTER' | __ }}</a></th>
+        <th><a class="sort-header" ng-click="sortData('reward')" ng-class="{'selected-sort': sort === 'reward'}">{{ 'VOTERS_INFO_REWARD' | __ }}</a></th>
+        <th><a class="sort-header" ng-click="sortData('percent')" ng-class="{'selected-sort': sort === 'percent'}">{{ 'VOTERS_INFO_PERCENT' | __ }}</a></th>
+        <th><a class="sort-header" ng-click="sortData('time')" ng-class="{'selected-sort': sort === 'time'}">{{ 'VOTERS_INFO_TIME' | __ }}</a></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="v in data">
+        <td><a ng-click="authorClicked(v.voter)">{{ v.voter }}</a> <span class="badge"> {{ v.reputation }}</span></td>
+        <td>{{ $root.currency | currencySymbol }} {{ v.reward_fixed }}</td>
+        <td>{{ v.percent / 100 }}%</td>
+        <td>{{ v.time | timeAgo }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

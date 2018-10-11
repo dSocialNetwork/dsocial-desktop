@@ -1,0 +1,26 @@
+a[ng-click] {
+  cursor: pointer;
+}
+
+a.disabled-link {
+  color: $textColorLighter;
+  cursor: default;
+  pointer-events: none;
+}
+
+a[target="_external"]:after, .markdown-external-link:after {
+  content: "\f08e";
+  font-family: FontAwesome;
+  font-size: 11px !important;
+  font-style: normal !important;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+h1, h2, h3, h4, h5, h6{
+  color: $textColor;
+}
+
+hr {
+  border-top-color: $seperatorColor;
+}

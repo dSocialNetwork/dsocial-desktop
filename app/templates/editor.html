@@ -1,0 +1,76 @@
+<nav-bar selected-section="'editor'"></nav-bar>
+<div class="app-container">
+  <div class="app-content editor-page">
+    <div class="indicator content-indicator" ng-show="fetchingContent">
+      <i class="fa fa-spin fa-spinner fa-circle-o-notch"></i>
+    </div>
+    <div class="editor-form" ng-hide="fetchingContent">
+      <div class="editing-part">
+        <div class="left-bar">
+          <content-editor-controls target-elem="#reply-editor-1"></content-editor-controls>
+        </div>
+        <div class="form-group content-title">
+          <input type="text" class="form-control input-lg" placeholder="{{ 'EDITOR_TITLE_PLACEHOLDER' | __ }}" id="content-title" ng-model="title">
+        </div>
+        <div class="form-group content-body">
+          <content-editor place-holder="{{ 'EDITOR_BODY_PLACEHOLDER' | __ }}" body="tempBody" elem-id="reply-editor-1"></content-editor>
+        </div>
+        <div class="form-group content-tags">
+          <div class="tag-err" ng-show="tagErr">{{ tagErr }}</div>
+          <input type="text" class="form-control" id="content-tags" placeholder="{{ 'EDITOR_TAG_PLACEHOLDER' | __ }}" ng-model="tags">
+        </div>
+      </div>
+      <div class="preview-part" id="editor-preview">
+        <div class="preview-part-title">{{ 'PREVIEW' | translate }}</div>
+        <div class="markdown-view" ng-bind-html="body | markDown2Html"></div>
+      </div>
+      <div class="preview-part-info" ng-show="wordsCount">{{ wordsCount }} {{ 'Words' | __ }}</div>
+    </div>
+    <div class="editor-controls" ng-if="!fetchingContent">
+      <div class="content-settings" ng-if="!editMode">
+        <div class="form-inline pull-left">
+          <div class="form-group">
+            <label for="reward-select">{{ 'REWARDS' | translate }}</label>
+            <select class="form-control" id="reward-select" ng-model="operationType.val">
+              <option value='default'>{{ 'DEFAULT' | translate }}</option>
+              <option value='bp'>{{ 'POWERUP' | translate }}</option>
+              <option value='dp'>{{ 'DECLINE_PAYOUT' | translate }}</option>
+            </select>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="vote.checked" id="vote-checkbox"> {{'UPVOTE'|translate}}
+            </label>
+          </div>
+        </div>
+        <div class="pull-right">
+          <button class="btn btn-default btn-clear" ng-click="clearForm()">{{ 'Clear All' | __ }}</button>
+        </div>
+      </div>
+      <div class="control-buttons">
+        <div class="pull-left" ng-if="!editMode">
+          <div class="dropup">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" ng-disabled="processing || fetchingPermission">
+              <i class="fa fa-calendar" ng-if="!updating"></i> <i class="fa fa-spin fa-spinner fa-circle-o-notch" ng-if="updating"></i> {{ 'SCHEDULE' | translate }}
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li ng-if="hasPerm"><a ng-click="scheduleClicked()">{{ 'EDITOR_SELECT_DATE' | __ }}</a></li>
+              <li ng-if="hasPerm" role="separator" class="divider"></li>
+              <li ng-if="hasPerm"><a ng-click="" login-required required-keys="'active'" on-login-success="removePermission()">{{ 'EDITOR_REMOVE_POSTING_PERM' | __ }}</a></li>
+              <li ng-if="!hasPerm"><a ng-click="" login-required required-keys="'active'" on-login-success="grantPermission()">{{ 'EDITOR_GRANT_POSTING_PERM' | __ }}</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="pull-right" ng-if="!editMode">
+          <button class="btn btn-link btn-save-draft" ng-click="" login-required on-login-success="save()" ng-disabled="processing"><i class="fa fa-spin fa-spinner fa-circle-o-notch" ng-show="saving"></i> {{ 'Save Draft' | __ }}</button>
+          <button class="btn btn-primary" ng-disabled="processing" ng-click="" login-required required-keys="'posting'" on-login-success="post()"><i class="fa fa-spin fa-spinner fa-circle-o-notch" ng-show="posting"></i> {{ 'POST' | translate }}</button>
+        </div>
+        <div class="pull-right" ng-if="editMode">
+          <button class="btn btn-primary" ng-disabled="processing" ng-click="" login-required required-keys="'posting'" on-login-success="update()"><i class="fa fa-spin fa-spinner fa-circle-o-notch" ng-show="posting"></i> {{ 'UPDATE' | __ }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

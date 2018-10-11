@@ -1,0 +1,46 @@
+<nav-bar search-str="searchStr"></nav-bar>
+<div class="app-container keep-pos" scrolled-bottom="reachedBottom()" id="content-main">
+  <div class="app-content search-page">
+    <div class="account-suggestions" ng-if="accounts.length">
+      <h2 class="title">{{ 'SEARCH_RESULTS_USER' | __ }}</h2>
+      <div class="account-card" ng-repeat="account in accounts" ng-click="accountClicked(account)">
+        <div class="account-pic" author-bg-img-style author="{{ account }}"></div>
+        <div class="account-name">{{ account }}</div>
+      </div>
+    </div>
+    <div class="search-summary" ng-show="hits">
+      <div class="search-result">
+       <span class="hits"> {{ hits | number }}</span> results for <span class="search-str">{{ searchStr }}</span>
+      </div>
+      <div class="select-options">
+        <label>Sort by  <select ng-model="sortBy" ng-change="sortChanged()">
+          <option value="popularity">Popularity</option>
+          <option value="relevance">Relevance</option>
+          <option value="newest">Date</option>
+        </select></label>
+      </div>
+    </div>
+    <div class="post-list" ng-class="{'fetching': loadingPosts}">
+      <header>
+        <div class="pull-right">
+          <button class="btn btn-sm btn-default btn-reload" ng-click="reload()" ng-disabled="loadingPosts"
+                  title="{{ 'Reload' | __ }}"><i class="fa fa-refresh"></i></button>
+        </div>
+      </header>
+      <content-list-loading-item item-size="5" ng-if="loadingPosts && posts.length === 0"></content-list-loading-item>
+      <ul class="feed">
+        <li ng-repeat="post in posts">
+          <content-list-item-search content="post"></content-list-item-search>
+        </li>
+      </ul>
+      <div class="empty-list" ng-if="posts.length === 0 && !loadingPosts">
+        {{ 'EMPTY_LIST' | __ }}
+      </div>
+      <footer>
+        <i class="fa fa-spin fa-spinner fa-circle-o-notch" ng-show="loadingPosts"></i>
+      </footer>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
+
